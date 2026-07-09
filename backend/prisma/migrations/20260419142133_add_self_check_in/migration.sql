@@ -1,0 +1,51 @@
+-- RedefineTables
+PRAGMA defer_foreign_keys=ON;
+PRAGMA foreign_keys=OFF;
+CREATE TABLE "new_Listing" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "propertyType" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "country" TEXT NOT NULL,
+    "zipCode" TEXT,
+    "latitude" REAL NOT NULL,
+    "longitude" REAL NOT NULL,
+    "maxGuests" INTEGER NOT NULL,
+    "totalRooms" INTEGER NOT NULL,
+    "bedrooms" INTEGER NOT NULL,
+    "beds" INTEGER NOT NULL,
+    "bathrooms" REAL NOT NULL,
+    "pricePerNight" REAL NOT NULL,
+    "cleaningFee" REAL NOT NULL DEFAULT 0,
+    "serviceFee" REAL NOT NULL DEFAULT 0,
+    "amenities" TEXT,
+    "checkInTime" TEXT NOT NULL DEFAULT '15:00',
+    "checkOutTime" TEXT NOT NULL DEFAULT '11:00',
+    "selfCheckIn" BOOLEAN NOT NULL DEFAULT false,
+    "petsAllowed" BOOLEAN NOT NULL DEFAULT false,
+    "instantBook" BOOLEAN NOT NULL DEFAULT false,
+    "minNights" INTEGER NOT NULL DEFAULT 1,
+    "maxNights" INTEGER NOT NULL DEFAULT 365,
+    "weeklyDiscount" REAL NOT NULL DEFAULT 0,
+    "monthlyDiscount" REAL NOT NULL DEFAULT 0,
+    "status" TEXT NOT NULL DEFAULT 'draft',
+    "isFeatured" BOOLEAN NOT NULL DEFAULT false,
+    "viewCount" INTEGER NOT NULL DEFAULT 0,
+    "avgRating" REAL NOT NULL DEFAULT 0,
+    "averageRating" REAL NOT NULL DEFAULT 0,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "ownerId" TEXT NOT NULL,
+    CONSTRAINT "Listing_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+INSERT INTO "new_Listing" ("address", "amenities", "averageRating", "bathrooms", "bedrooms", "beds", "category", "checkInTime", "checkOutTime", "city", "cleaningFee", "country", "createdAt", "description", "id", "instantBook", "isFeatured", "latitude", "longitude", "maxGuests", "maxNights", "minNights", "monthlyDiscount", "ownerId", "petsAllowed", "pricePerNight", "propertyType", "serviceFee", "slug", "state", "status", "title", "totalRooms", "updatedAt", "viewCount", "weeklyDiscount", "zipCode") SELECT "address", "amenities", "averageRating", "bathrooms", "bedrooms", "beds", "category", "checkInTime", "checkOutTime", "city", "cleaningFee", "country", "createdAt", "description", "id", "instantBook", "isFeatured", "latitude", "longitude", "maxGuests", "maxNights", "minNights", "monthlyDiscount", "ownerId", "petsAllowed", "pricePerNight", "propertyType", "serviceFee", "slug", "state", "status", "title", "totalRooms", "updatedAt", "viewCount", "weeklyDiscount", "zipCode" FROM "Listing";
+DROP TABLE "Listing";
+ALTER TABLE "new_Listing" RENAME TO "Listing";
+CREATE UNIQUE INDEX "Listing_slug_key" ON "Listing"("slug");
+PRAGMA foreign_keys=ON;
+PRAGMA defer_foreign_keys=OFF;
