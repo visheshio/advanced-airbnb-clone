@@ -222,7 +222,7 @@ async function runTests() {
   console.log('\n━━━ Test 11: Verify Data Persistence in MongoDB ━━━');
   try {
     const mongoose = require('mongoose');
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://maheshwarivishesh2_db_user:wh8yWIzzjr4gvYpO@airbnb.bsh1u6d.mongodb.net/home-rental', {
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv:/home-rental', {
       serverSelectionTimeoutMS: 10000,
     });
 
