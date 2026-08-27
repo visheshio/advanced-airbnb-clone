@@ -5,6 +5,10 @@ dns.setServers(['8.8.8.8', '8.8.4.4']);
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) {
+    return mongoose.connection;
+  }
+
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       // These options are defaults in Mongoose 8.x but kept for clarity
