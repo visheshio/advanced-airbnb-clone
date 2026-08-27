@@ -124,23 +124,25 @@ app.all('*', (req, res) => {
 app.use(errorHandler);
 
 // ─── Start Server ──────────────────────────────────────────────────────────
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`\n🚀 Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-  console.log(`📡 API Base URL: http://localhost:${PORT}/api`);
-  console.log(`❤️  Health Check: http://localhost:${PORT}/health\n`);
-});
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
+  server.listen(PORT, () => {
+    console.log(`\n🚀 Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+    console.log(`📡 API Base URL: http://localhost:${PORT}/api`);
+    console.log(`❤️  Health Check: http://localhost:${PORT}/health\n`);
+  });
 
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (err) => {
-  console.error('❌ UNHANDLED REJECTION:', err.message);
-  server.close(() => process.exit(1));
-});
+  // Handle unhandled promise rejections
+  process.on('unhandledRejection', (err) => {
+    console.error('❌ UNHANDLED REJECTION:', err.message);
+    server.close(() => process.exit(1));
+  });
 
-// Handle uncaught exceptions
-process.on('uncaughtException', (err) => {
-  console.error('❌ UNCAUGHT EXCEPTION:', err.message);
-  process.exit(1);
-});
+  // Handle uncaught exceptions
+  process.on('uncaughtException', (err) => {
+    console.error('❌ UNCAUGHT EXCEPTION:', err.message);
+    process.exit(1);
+  });
+}
 
 module.exports = { app, server };

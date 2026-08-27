@@ -3,7 +3,7 @@
  * Handles authentication, error handling, and request/response interceptors
  */
 
-const API_BASE_URL = (import.meta as any).env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = (import.meta as any).env.VITE_API_URL || '/api';
 
 interface ApiResponse<T = any> {
   success: boolean;
