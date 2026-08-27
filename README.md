@@ -14,8 +14,6 @@ An enterprise-grade, high-performance travel marketplace and vacation rental pla
 | Resource | URL / Placeholder | Description |
 | :--- | :--- | :--- |
 | **Production App** | [https://advanced-airbnb-clone.vercel.app](https://advanced-airbnb-clone.vercel.app) | Live multi-tenant deployment hosted on Vercel Edge Networks. |
-| **Interactive Demo** | `[Insert Video/GIF Demo URL Here]` | High-definition walk-through of guest booking, host dashboards, and checkout flows. |
-| **API Reference** | [https://api-advanced-airbnb-clone.render.com/docs](https://api-advanced-airbnb-clone.render.com/docs) | Interactive Swagger/OpenAPI documentation for headless integrations. |
 
 ---
 
